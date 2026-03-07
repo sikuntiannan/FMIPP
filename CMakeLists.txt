@@ -331,3 +331,6 @@ if(BUILD_SWIG)
       endif()
    endif()
 endif()
+
+# 设置安装路径
+set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install/)

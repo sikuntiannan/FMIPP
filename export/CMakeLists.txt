@@ -90,3 +90,31 @@ target_compile_definitions(fmi2 PRIVATE
 if(BUILD_SWIG)
    add_subdirectory(swig)
 endif()
+
+# 安装C++
+# 指定头文件的安装路径
+install(TARGETS fmippex
+   EXPORT fmippex
+   LIBRARY DESTINATION lib
+   ARCHIVE DESTINATION lib
+   RUNTIME DESTINATION bin)
+
+# 指定头文件的安装路径
+install(TARGETS libfmipp_fmu_frontend
+   EXPORT libfmipp_fmu_frontend
+   LIBRARY DESTINATION lib
+   ARCHIVE DESTINATION lib
+   RUNTIME DESTINATION bin)
+
+# 指定头文件的安装路径
+install(TARGETS fmi2
+   EXPORT fmi2
+   LIBRARY DESTINATION lib
+   ARCHIVE DESTINATION lib
+   RUNTIME DESTINATION bin)
+
+# 安装头文件并保持目录结构，排除.cpp文件
+install(DIRECTORY ./functions/ DESTINATION include/export/
+        PATTERN "*.cpp" EXCLUDE)
+install(DIRECTORY ./include/ DESTINATION include/export/
+        PATTERN "*.cpp" EXCLUDE)

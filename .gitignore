@@ -31,3 +31,6 @@ build/
 
 # documentations
 docs/api/
+
+#安装文件夹
+install/
