@@ -3,7 +3,7 @@
 # All rights reserved. See file FMIPP_LICENSE for details.
 # -------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.8)
 
 project(fmipp_export)
 
@@ -115,6 +115,6 @@ install(TARGETS fmi2
 
 # 安装头文件并保持目录结构，排除.cpp文件
 install(DIRECTORY ./functions/ DESTINATION include/export/
-        PATTERN "*.cpp" EXCLUDE)
+   PATTERN "*.cpp" EXCLUDE)
 install(DIRECTORY ./include/ DESTINATION include/export/
-        PATTERN "*.cpp" EXCLUDE)
+   PATTERN "*.cpp" EXCLUDE)
