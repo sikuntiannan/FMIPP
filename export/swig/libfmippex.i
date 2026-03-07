@@ -23,13 +23,6 @@
 
 %module(package="fmipp.export", moduleimport="import _fmippex") fmippex
 
-#if defined(SWIGPYTHON)
-
-%feature("autodoc", "0");
-
-#else
-#endif
-
 %{
 #include "common/FMIPPVariableType.h"
 #include "common/FMIPPStatus.h"

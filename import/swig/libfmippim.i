@@ -44,9 +44,6 @@
 #include "import/utility/include/InterpolatingFixedStepSizeFMU.h"
 %}
 
-%ignore getValue;
-%ignore setValue;
-
 %rename(setRealValue) setValue( const fmippString&, const fmippReal& );
 %rename(setIntegerValue) setValue( const fmippString&, const fmippInteger& );
 %rename(setBooleanValue) setValue( const fmippString&, const fmippBoolean& );
@@ -60,9 +57,6 @@
 %rename(FMUCoSimulationV2) fmi_2_0::FMUCoSimulation;
 
 #if defined(SWIGPYTHON)
-
-%feature("autodoc", "0");
-
 %ignore fmippFalse;
 %ignore fmippTrue;
 
