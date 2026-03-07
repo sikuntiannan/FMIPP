@@ -332,5 +332,7 @@ if(BUILD_SWIG)
    endif()
 endif()
 
+install(DIRECTORY ./common DESTINATION include/ PATTERN "*.cpp" EXCLUDE)
+
 # 设置安装路径
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install/)

@@ -67,6 +67,6 @@ install(TARGETS fmippim
   RUNTIME DESTINATION bin)
 
 # 安装头文件并保持目录结构
-install(DIRECTORY base/include/ DESTINATION include/import/base PATTERN "*.cpp" EXCLUDE)
-install(DIRECTORY integrators/include/ DESTINATION include/import/integrators PATTERN "*.cpp" EXCLUDE)
-install(DIRECTORY utility/include/ DESTINATION include/import/utility PATTERN "*.cpp" EXCLUDE)
+install(DIRECTORY base/include/ DESTINATION include/import/base/include PATTERN "*.cpp" EXCLUDE)
+install(DIRECTORY integrators/include/ DESTINATION include/import/integrators/include PATTERN "*.cpp" EXCLUDE)
+install(DIRECTORY utility/include/ DESTINATION include/import/utility/include PATTERN "*.cpp" EXCLUDE)
