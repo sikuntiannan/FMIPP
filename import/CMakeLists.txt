@@ -70,3 +70,6 @@ install(TARGETS fmippim
 install(DIRECTORY base/include/ DESTINATION include/import/base/include PATTERN "*.cpp" EXCLUDE)
 install(DIRECTORY integrators/include/ DESTINATION include/import/integrators/include PATTERN "*.cpp" EXCLUDE)
 install(DIRECTORY utility/include/ DESTINATION include/import/utility/include PATTERN "*.cpp" EXCLUDE)
+
+# 导出目标
+install(EXPORT fmippim FILE "fmippim.cmake" NAMESPACE FMIPP:: DESTINATION lib/cmake/fmippim/)
