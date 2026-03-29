@@ -171,6 +171,16 @@ else() # linux-specific
 endif()
 
 # Boost dependencies here
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+   # 设置Boost默认为静态库
+   set(Boost_USE_STATIC_LIBS ON)
+   message("静态方式链接boost库")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+   # 设置Boost默认为动态库
+   set(Boost_USE_STATIC_LIBS OFF)
+   message("动态方式链接boost库")
+endif()
+
 find_package(Boost 1.56.0 REQUIRED)
 
 if(Boost_FOUND)
