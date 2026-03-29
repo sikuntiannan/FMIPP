@@ -7,6 +7,9 @@ cmake_minimum_required(VERSION 3.8)
 
 project(fmipp)
 
+# debug模式,生成文件加上后缀d
+set(CMAKE_DEBUG_POSTFIX "d")
+
 # add a target to generate documentation with Doxygen
 find_package(Doxygen)
 
