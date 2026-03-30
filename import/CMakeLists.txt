@@ -72,4 +72,4 @@ install(DIRECTORY integrators/include/ DESTINATION include/import/integrators/in
 install(DIRECTORY utility/include/ DESTINATION include/import/utility/include PATTERN "*.cpp" EXCLUDE)
 
 # 导出目标
-install(EXPORT fmippim FILE "fmippim.cmake" NAMESPACE FMIPP:: DESTINATION lib/cmake/fmippim/)
+install(EXPORT fmippim FILE "fmippim.cmake" NAMESPACE fmipp:: DESTINATION lib/cmake/fmipp/fmippim/)

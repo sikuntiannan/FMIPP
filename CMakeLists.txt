@@ -7,6 +7,11 @@ cmake_minimum_required(VERSION 3.8)
 
 project(fmipp)
 
+set(${PROJECT_NAME}_VERSION_MAJOR 1)
+set(${PROJECT_NAME}_VERSION_MINOR 0)
+set(${PROJECT_NAME}_VERSION_PATCH 0)
+set(${PROJECT_NAME}_VERSION "${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}.${${PROJECT_NAME}_VERSION_PATCH}")
+
 # debug模式,生成文件加上后缀d
 set(CMAKE_DEBUG_POSTFIX "d")
 
@@ -349,3 +354,27 @@ install(DIRECTORY ./common DESTINATION include/ PATTERN "*.cpp" EXCLUDE)
 
 # 设置安装路径
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install/)
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+   ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}Config.cmake.in
+   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+   INSTALL_DESTINATION lib/cmake/${PROJECT_NAME}
+   PATH_VARS CMAKE_INSTALL_PREFIX
+   NO_SET_AND_CHECK_MACRO
+   NO_CHECK_REQUIRED_COMPONENTS_MACRO
+)
+
+write_basic_package_version_file(
+   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+   VERSION ${${PROJECT_NAME}_VERSION}
+   COMPATIBILITY SameMajorVersion
+)
+
+install(
+   FILES
+   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+   DESTINATION lib/cmake/${PROJECT_NAME}
+)

@@ -1,0 +1,62 @@
+# fmippConfig.cmake.in
+# 由 CMake 自动生成，请勿手动修改
+
+# 设置版本变量
+set(fmipp_VERSION_MAJOR @fmipp_VERSION_MAJOR@)
+set(fmipp_VERSION_MINOR @fmipp_VERSION_MINOR@)
+set(fmipp_VERSION_PATCH @fmipp_VERSION_PATCH@)
+set(fmipp_VERSION "@fmipp_VERSION@")
+
+# 标记包已找到
+set(fmipp_FOUND TRUE)
+
+# 包含各个子包的导出文件
+# 注意：这些文件必须在同一个安装目录下
+include("${CMAKE_CURRENT_LIST_DIR}/fmippim/fmippim.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/fmippex/fmippex.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/libfmipp_fmu_frontend/libfmipp_fmu_frontend.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/fmi2/fmi2.cmake")
+
+# 为每个目标设置头文件目录（关键修复！）
+# 计算基础头文件路径（相对于当前配置文件）
+get_filename_component(_fmipp_include_base "${CMAKE_CURRENT_LIST_FILE}" PATH)
+get_filename_component(_fmipp_include_base "${_fmipp_include_base}" PATH)  # 退出 lib/cmake/fmipp
+get_filename_component(_fmipp_include_base "${_fmipp_include_base}" PATH)  # 退出 lib/cmake
+get_filename_component(_fmipp_include_base "${_fmipp_include_base}" PATH)  # 退出 lib
+set(_fmipp_include_dir "${_fmipp_include_base}/include")
+
+# 为每个目标添加头文件目录
+foreach(_target IN ITEMS fmipp::fmippim fmipp::fmippex fmipp::libfmipp_fmu_frontend fmipp::fmi2)
+  if(TARGET ${_target})
+    # 获取当前的目标包含目录
+    get_target_property(_current_includes ${_target} INTERFACE_INCLUDE_DIRECTORIES)
+    if(NOT _current_includes)
+      set(_current_includes "")  # 初始化为空
+    endif()
+    # 添加 fmipp 的头文件目录
+    list(APPEND _current_includes "${_fmipp_include_dir}")
+    # 设置回目标
+    set_target_properties(${_target} PROPERTIES
+      INTERFACE_INCLUDE_DIRECTORIES "${_current_includes}"
+    )
+  endif()
+endforeach()
+
+# 清理临时变量
+unset(_fmipp_include_base)
+unset(_fmipp_include_dir)
+unset(_current_includes)
+unset(_target)
+
+# 提供便捷变量（可选）
+set(fmipp_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_PREFIX@/include")
+set(fmipp_LIBRARIES
+    fmipp::fmippim
+    fmipp::fmippex
+    fmipp::libfmipp_fmu_frontend
+    fmipp::fmi2
+)
+
+# 向后兼容：设置旧式变量
+set(fmipp_INCLUDE_DIR "${fmipp_INCLUDE_DIRS}")
+set(fmipp_LIBRARY "${fmipp_LIBRARIES}")

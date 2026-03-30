@@ -119,6 +119,6 @@ install(DIRECTORY ./functions/ DESTINATION include/export/
 install(DIRECTORY ./include/ DESTINATION include/export/
    PATTERN "*.cpp" EXCLUDE)
 
-install(EXPORT fmippex FILE "fmippex.cmake" NAMESPACE FMIPP:: DESTINATION lib/cmake/fmippex/)
-install(EXPORT libfmipp_fmu_frontend FILE "libfmipp_fmu_frontend.cmake" NAMESPACE FMIPP:: DESTINATION lib/cmake/libfmipp_fmu_frontend/)
-install(EXPORT fmi2 FILE "fmi2.cmake" NAMESPACE FMIPP:: DESTINATION lib/cmake/fmi2/)
+install(EXPORT fmippex FILE "fmippex.cmake" NAMESPACE fmipp:: DESTINATION lib/cmake/fmipp/fmippex/)
+install(EXPORT libfmipp_fmu_frontend FILE "libfmipp_fmu_frontend.cmake" NAMESPACE fmipp:: DESTINATION lib/cmake/fmipp/libfmipp_fmu_frontend/)
+install(EXPORT fmi2 FILE "fmi2.cmake" NAMESPACE fmipp:: DESTINATION lib/cmake/fmipp/fmi2/)
